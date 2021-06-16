@@ -16,8 +16,9 @@
     "httpolyglot": "^0.1.2",
     "mediasoup": "^3.6.16",
     "mediasoup-client": "^3.6.12",
-    "protoo-client": "^4.0.4",
-    "protoo-server": "^4.0.4",
-    "socket.io": "^2.3.0"
+    "socket.io": "^4.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
