@@ -107,7 +107,7 @@ io.on('connection', socket => {
       socket.on('create', (room) => {
           console.log("CREATE", room)
         socket.join(room);
-        socket.to(room).emit("qwer1234", room);
+        socket.to(room).emit(room, room);
       });
 
 
