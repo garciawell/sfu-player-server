@@ -86,7 +86,6 @@ async function createWorkers() {
 
 
 io.on('connection', socket => {
-
     socket.on('createRoom', async ({
         room_id
     }, callback) => {
@@ -99,6 +98,18 @@ io.on('connection', socket => {
             callback(room_id)
         }
     })
+    // handle the event sent with socket.emit()
+    // socket.on('join2', (elem1) => { 
+    //     console.log("ELE", elem1);
+    //     io.in('game').emit('big-announcement', 'the game will start soon');
+    // });
+
+      socket.on('create', (room) => {
+          console.log("CREATE", room)
+        socket.join(room);
+        socket.to(room).emit("qwer1234", room);
+      });
+
 
     socket.on('join', ({
         room_id,
