@@ -1,6 +1,6 @@
 const config = require('./config')
 module.exports = class Room {
-    constructor(room_id, worker, io) {
+    constructor(room_id, worker, io, user_master) {
         this.id = room_id
         const mediaCodecs = config.mediasoup.router.mediaCodecs
         worker.createRouter({
@@ -10,11 +10,30 @@ module.exports = class Room {
         }.bind(this))
 
         this.peers = new Map()
-        this.io = io
+        this.io = io;
+        this.users = new Map()
+        this.user_master = user_master
     }
 
     addPeer(peer) {
         this.peers.set(peer.id, peer)
+    }
+
+    async addUser(user) {
+        this.users.set(user._id, user);
+    }
+
+    getUserOfRoom(id) {
+        console.log(this.users);
+        return this.users.get(id);
+    }
+
+    getUsersOfRoom() {
+        let userList = []
+        this.users.forEach(user => {
+            userList.push(user)
+        })
+        return userList
     }
 
     getProducerListForPeer(socket_id) {
@@ -121,6 +140,10 @@ module.exports = class Room {
     async removePeer(socket_id) {
         this.peers.get(socket_id).close()
         this.peers.delete(socket_id)
+    }
+
+    async removeUser(id) {
+        this.users.delete(id);
     }
 
     closeProducer(socket_id, producer_id) {

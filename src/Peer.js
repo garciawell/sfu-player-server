@@ -1,5 +1,5 @@
 module.exports = class Peer {
-    constructor(socket_id, name) {
+    constructor(socket_id, name, master=false) {
         this.id = socket_id
         this.name = name
         this.transports = new Map()

@@ -1,5 +1,25 @@
 const os = require('os')
 
+var
+    // Local ip address that we're trying to calculate
+    address
+    // Network interfaces
+    ,ifaces = os.networkInterfaces();
+
+
+// Iterate over interfaces ...
+for (var dev in ifaces) {
+
+    // ... and find the one that matches the criteria
+    var iface = ifaces[dev].filter(function(details) {
+        return details.family === 'IPv4' && details.internal === false;
+    });
+
+    if(iface.length > 0) address = iface[0].address;
+}
+
+address = '127.0.0.1'
+
 module.exports = {
     listenIp: '0.0.0.0',
     listenPort: 3333,
@@ -39,6 +59,15 @@ module.exports = {
             },
             {
               kind: 'video',
+              mimeType: 'video/h264',
+              clockRate: 90000,
+              parameters:
+                {
+                  'x-google-start-bitrate': 1000
+                }
+            },
+            {
+              kind: 'screen',
               mimeType: 'video/VP8',
               clockRate: 90000,
               parameters:
@@ -53,7 +82,7 @@ module.exports = {
         listenIps: [
           {
             ip: '0.0.0.0',      
-            announcedIp:'127.0.0.1' // replace by public IP address
+            announcedIp: address // replace by public IP address
           }
         ],
         maxIncomingBitrate: 1500000,
