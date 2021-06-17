@@ -54,7 +54,10 @@ let roomList = new Map()
     await createWorkers()
 })()
 
-
+//activities:
+//key(room):activities : string
+//
+let activities = new Map();
 
 async function createWorkers() {
     let {
@@ -74,13 +77,6 @@ async function createWorkers() {
             setTimeout(() => process.exit(1), 2000);
         })
         workers.push(worker)
-
-        // log worker resource usage
-        /*setInterval(async () => {
-            const usage = await worker.getResourceUsage();
-
-            console.info('mediasoup Worker resource usage [pid:%d]: %o', worker.pid, usage);
-        }, 120000);*/
     }
 }
 
@@ -98,18 +94,24 @@ io.on('connection', socket => {
             callback(room_id)
         }
     })
-    // handle the event sent with socket.emit()
-    // socket.on('join2', (elem1) => { 
-    //     console.log("ELE", elem1);
-    //     io.in('game').emit('big-announcement', 'the game will start soon');
-    // });
 
-      socket.on('create', (room) => {
-          console.log("CREATE", room)
+    socket.on('create', (room) => {
+        console.log("CREATE", room)
         socket.join(room);
-        socket.to(room).emit("qwer1234", room);
-      });
+        io.to(socket.id).emit(room, room);
 
+        io.to(socket.id).emit('activities', activities.get(room) ? activities.get(room) : 'text');
+    });
+
+    /**
+     * type data:
+     * room: string
+     * value : string
+     */
+    socket.on('activities', (data) => {
+        activities.set(data.room, data.value)
+        io.in(data.room).emit("activities", data.value);
+    });
 
     socket.on('join', ({
         room_id,
