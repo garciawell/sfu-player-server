@@ -621,11 +621,6 @@ http-errors@~1.7.2:
     statuses ">= 1.5.0 < 2"
     toidentifier "1.0.0"
 
-httpolyglot@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/httpolyglot/-/httpolyglot-0.1.2.tgz#e4d347fe8984a62f467d4060df527f1851f6997b"
-  integrity sha1-5NNH/omEpi9GfUBg31J/GFH2mXs=
-
 iconv-lite@0.4.24:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"

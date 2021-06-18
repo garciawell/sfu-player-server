@@ -54,7 +54,6 @@ let nextMediasoupWorkerIdx = 0
  * }
  */
 let roomList = new Map()
-let activities = new Map();
 
 ;
 (async () => {
@@ -106,28 +105,6 @@ io.on('connection', socket => {
             callback(room_id)
         }
     })
-
-    socket.on('create', (room) => {
-        console.log("CREATE", room)
-        socket.join(room);
-        io.to(socket.id).emit(room, room);
-
-        io.to(socket.id).emit('activities', activities.get(room) ? activities.get(room) : 'text');
-    });
-
-      /**
-     * type data:
-     * room: string
-     * value : string
-     */
-       socket.on('activities', (data) => {
-        console.log("ACTTT")
-
-        activities.set(data.room, data.value)
-        io.in(data.room).emit("activities", data.value);
-    });
-
-
 
     socket.on('join', async ({
         room_id,

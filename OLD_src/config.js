@@ -22,7 +22,7 @@ address = '127.0.0.1'
 
 module.exports = {
     listenIp: '0.0.0.0',
-    listenPort: 3016,
+    listenPort: 3333,
     sslCrt: '../ssl/cert.pem',
     sslKey: '../ssl/key.pem',
     
