@@ -1,6 +1,6 @@
 const os = require('os')
 
-address = '18.218.78.232'
+address = '18.217.182.229'
 
 module.exports = {
     listenIp: '0.0.0.0',
