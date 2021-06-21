@@ -18,7 +18,7 @@ for (var dev in ifaces) {
     if(iface.length > 0) address = iface[0].address;
 }
 
-address = '127.0.0.1'
+address = '172.19.53.18'
 
 module.exports = {
     listenIp: '0.0.0.0',
@@ -81,8 +81,8 @@ module.exports = {
     webRtcTransport: {
         listenIps: [
           {
-            ip: '0.0.0.0',      
-            announcedIp: address // replace by public IP address
+            ip: '192.168.1.109',      
+            announcedIp: address,
           }
         ],
         maxIncomingBitrate: 1500000,
