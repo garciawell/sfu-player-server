@@ -18,7 +18,7 @@ for (var dev in ifaces) {
     if(iface.length > 0) address = iface[0].address;
 }
 
-address = '172.17.81.234'
+address = '127.0.0.1'
 
 module.exports = {
     listenIp: '0.0.0.0',
