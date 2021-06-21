@@ -18,7 +18,7 @@ for (var dev in ifaces) {
     if(iface.length > 0) address = iface[0].address;
 }
 
-address = '172.19.53.18'
+address = '172.17.81.234'
 
 module.exports = {
     listenIp: '0.0.0.0',
@@ -81,7 +81,7 @@ module.exports = {
     webRtcTransport: {
         listenIps: [
           {
-            ip: '192.168.1.109',      
+            ip: "0.0.0.0",
             announcedIp: address,
           }
         ],
