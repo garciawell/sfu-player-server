@@ -1,24 +1,6 @@
 const os = require('os')
 
-var
-    // Local ip address that we're trying to calculate
-    address
-    // Network interfaces
-    ,ifaces = os.networkInterfaces();
-
-
-// Iterate over interfaces ...
-for (var dev in ifaces) {
-
-    // ... and find the one that matches the criteria
-    var iface = ifaces[dev].filter(function(details) {
-        return details.family === 'IPv4' && details.internal === false;
-    });
-
-    if(iface.length > 0) address = iface[0].address;
-}
-
-address = '127.0.0.1'
+address = '18.218.78.232'
 
 module.exports = {
     listenIp: '0.0.0.0',
@@ -30,8 +12,8 @@ module.exports = {
       // Worker settings
       numWorkers : Object.keys(os.cpus()).length,
       worker: {
-        rtcMinPort: 10000,
-        rtcMaxPort: 10100,
+        rtcMinPort: 40000,
+        rtcMaxPort: 49999,
         logLevel: 'warn',
         logTags: [
           'info',
