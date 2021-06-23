@@ -5,8 +5,8 @@ address = '18.217.182.229'
 module.exports = {
     listenIp: '0.0.0.0',
     listenPort: process.env.PORT || 3016,
-    sslCrt: '../ssl/cert.pem',
-    sslKey: '../ssl/key.pem',
+    sslCrt: '../ssl/local-wtp.wiseup.com.pem',
+    sslKey: '../ssl/local-wtp.wiseup.com-key.pem',
     
     mediasoup: {
       // Worker settings
