@@ -3,11 +3,8 @@ const express = require('express')
 const app = express()
 const https = require('https')
 const fs = require('fs')
-const mediasoup = require('mediasoup')
 const config = require('./config')
 const path = require('path')
-const Room = require('./Room')
-const Peer = require('./Peer')
 const { join } = require('path')
 
 const options = {
