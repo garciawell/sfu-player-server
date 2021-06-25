@@ -1,7 +1,7 @@
 const express = require('express')
 
 const app = express()
-const https = require('https')
+const http = require('http')
 const fs = require('fs')
 const config = require('./config')
 const path = require('path')
@@ -12,7 +12,7 @@ const options = {
     cert: fs.readFileSync(path.join(__dirname,config.sslCrt), 'utf-8')
 }
 
-const httpsServer = https.createServer(options, app)
+const httpsServer = http.createServer(app)
 const io = require('socket.io')(httpsServer)
 
 
